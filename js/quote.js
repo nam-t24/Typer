@@ -23,14 +23,30 @@ async function getQuote() {
   let cursorIndex = 0;
   let cursorCharacter = characters[cursorIndex];
   cursorCharacter.classList.add("cursor");
+  let startTime = null;
+  let endTime = null;
 
-  document.addEventListener("keydown", ({ key }) => {
+  const keyListener = document.addEventListener("keydown", ({ key }) => {
+    if (!startTime) {
+      startTime = new Date();
+    }
     if (key === cursorCharacter.innerText) {
       cursorCharacter.classList.remove("cursor");
       cursorCharacter.classList.add("correct");
       cursorCharacter = characters[++cursorIndex];
-      cursorCharacter.classList.add("cursor");
     }
+    if (cursorIndex >= characters.length) {
+      endTime = new Date();
+      const delta = endTime - startTime;
+      const seconds = delta / 1000;
+      const numberOfWords = text.split(" ").Length;
+      const wps = numberOfWords / seconds;
+      const wpm = wps * 60.0;
+      document.getElementById("wordspm").innerText = `wpm = ${wpm}`;
+      document.removeEventListener("keydown", keyListener);
+      return;
+    }
+    cursorCharacter.classList.add("cursor");
   });
 }
 

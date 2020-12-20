@@ -3,6 +3,7 @@
 
 //DOM Element
 const typingText = document.getElementById("displayQuote");
+const stats = document.getElementById("wordspm");
 
 async function getQuote() {
   //getting quote content
@@ -10,9 +11,11 @@ async function getQuote() {
   const data1 = await loadQuote.json();
 
   //assign quote content to DOM
-
+  typingText.innerHTML = "";
+  stats.innerHTML = "wpm:";
   const text = data1.content;
 
+  //splits text into array of each character
   const characters = text.split("").map((char) => {
     const span = document.createElement("span");
     span.innerText = char;
@@ -26,6 +29,7 @@ async function getQuote() {
   let startTime = null;
   let endTime = null;
 
+  //typing function
   const keyListener = document.addEventListener("keydown", ({ key }) => {
     if (!startTime) {
       startTime = new Date();
@@ -39,10 +43,12 @@ async function getQuote() {
       endTime = new Date();
       const delta = endTime - startTime;
       const seconds = delta / 1000;
-      const numberOfWords = text.split(" ").Length;
+
+      //words per minute is calculated by dividing total amount of characters by 5 per minute
+      const numberOfWords = characters.length / 5.0;
       const wps = numberOfWords / seconds;
-      const wpm = wps * 60.0;
-      document.getElementById("wordspm").innerText = `wpm = ${wpm}`;
+      const wpm = Math.round(100 * (wps * 60.0)) / 100;
+      document.getElementById("wordspm").innerText = `wpm: ${wpm}`;
       document.removeEventListener("keydown", keyListener);
       return;
     }

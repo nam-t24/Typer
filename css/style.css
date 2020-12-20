@@ -14,8 +14,8 @@ body {
   background-color: #e5cfe5;
   padding: 1rem;
   border-radius: 1rem;
-  width: 700px !important;
-  max-width: 90%;
+  /*width: 700px !important;*/
+  max-width: 50% !important;
   margin-top: 100px;
 }
 .bttn {
@@ -36,6 +36,11 @@ body h1 {
 .display-quote {
   padding: 10px;
   color: black;
+}
+.stat {
+  position: relative;
+  top: 6em;
+  left: 20%;
 }
 /*Typing style*/
 .cursor {

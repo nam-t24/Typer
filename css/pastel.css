@@ -85,6 +85,10 @@ body h1 {
 .card-body {
   padding: 40px;
 }
+.card-header,
+.card-footer {
+  background-color: #fae3d3 !important;
+}
 
 .footer {
   position: absolute;

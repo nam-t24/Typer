@@ -5,6 +5,7 @@
 const typingText = document.getElementById("displayQuote");
 const stats = document.getElementById("wordspm");
 
+//typing section
 async function getQuote() {
   //getting quote content
   const loadQuote = await fetch("https://api.quotable.io/random");
@@ -34,11 +35,13 @@ async function getQuote() {
     if (!startTime) {
       startTime = new Date();
     }
+    //typing action
     if (key === cursorCharacter.innerText) {
       cursorCharacter.classList.remove("cursor");
       cursorCharacter.classList.add("correct");
       cursorCharacter = characters[++cursorIndex];
     }
+    //stat calculation
     if (cursorIndex >= characters.length) {
       endTime = new Date();
       const delta = endTime - startTime;
@@ -55,9 +58,10 @@ async function getQuote() {
     cursorCharacter.classList.add("cursor");
   });
 }
-
+//calls getQuote once when page loads
 getQuote();
 
+//quotes card
 document.addEventListener("DOMContentLoaded", () => {
   // DOM elements
   const button = document.querySelector("#load");
@@ -80,3 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // call updateQuote once when page loads
   updateQuote();
 });
+
+/*Button Themes*/
+function themes(sheet) {
+  document.getElementById("csspage").setAttribute("href", sheet);
+}

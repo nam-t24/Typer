@@ -10,4 +10,4 @@ The site utlizes [Quotable](https://github.com/lukePeavey/quotable), made by Luk
 <br />
 <br />
 *Disclaimer: Not suitable for safari, best used in chrome<br />
-*Sadly github recognizes css as the highest used language(due to the fact that there are near identical css pages for themes) :(
+
